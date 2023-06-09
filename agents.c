@@ -185,19 +185,7 @@ bool update() {
             if (next_to(players[i].x, players[i].y, goals[i].x, goals[i].y)) finished[i] = true;
             if (moved[i]) continue;
 
-            if (!finished[i]) {
-                all_done = false;
-                direction_t dir = get_direction(goals[i].x, goals[i].y, players[i].x, players[i].y);
-                memset(visited, 0, sizeof visited);
-                if (dir == NONE) continue;
-
-                if (try_move(i, dir)) {
-                    deadlock = false;
-                    moved[i] = true;
-                }
-                else cont = true;
-            }
-            else if (blockers[i]) {
+            if (blockers[i]) {
                 direction_t dir = blockers[i];
                 direction_t it = dir;
 
@@ -210,6 +198,18 @@ bool update() {
                     }
                     if (it == dir) break;
                 }
+            }
+            else if (!finished[i]) {
+                all_done = false;
+                direction_t dir = get_direction(goals[i].x, goals[i].y, players[i].x, players[i].y);
+                memset(visited, 0, sizeof visited);
+                if (dir == NONE) continue;
+
+                if (try_move(i, dir)) {
+                    deadlock = false;
+                    moved[i] = true;
+                }
+                else cont = true;
             }
         }
     }
