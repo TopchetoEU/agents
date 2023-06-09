@@ -147,7 +147,11 @@ direction_t get_direction(int goal_x, int goal_y, int x, int y) {
 }
 
 void redraw() {
+    #ifdef WIN32
+    system("cls");
+    #else
     system("clear");
+    #endif
     for (int y = 0; y < grid_h; y++) {
         for (int x = 0; x < grid_w; x++) {
             for (size_t i = 0; i < players_n; i++) {
