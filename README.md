@@ -1,6 +1,6 @@
 # Agents
 
-** By TopchetoEU **
+**By TopchetoEU**
 
 This is a program, written in C, that will find a reasonably fast path for N
 agents to their targets in a field with obstacles. This is achieved using a
